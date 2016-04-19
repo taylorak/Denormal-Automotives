@@ -48,10 +48,23 @@ FROM car_models;
 
 ALTER TABLE car_models DROP COLUMN car_models_id;
 
-SELECT make_title FROM normal_car_makers;
-SELECT model_title FROM normal_car_models INNER JOIN normal_car_makers ON normal_car_models.normal_car_maker_id = normal_car_makers.id WHERE make_code = 'VOLKS';
+SELECT make_title
+FROM normal_car_makers;
 
-SELECT * FROM normal_car_years WHERE year BETWEEN 2010 AND 2015;
+SELECT model_title
+FROM normal_car_models
+INNER JOIN normal_car_makers
+ON normal_car_models.normal_car_maker_id = normal_car_makers.id
+WHERE make_code = 'VOLKS';
 
+SELECT make_code, model_code, model_title, year
+FROM normal_car_years
+INNER JOIN normal_car_models
+ON normal_car_years.normal_car_model_id = normal_car_models.id
+INNER JOIN normal_car_makers
+ON normal_car_makers.id = normal_car_models.normal_car_maker_id
+WHERE make_code = 'LAM';
 
-
+SELECT *
+FROM normal_car_years
+WHERE year BETWEEN 2010 AND 2015;
